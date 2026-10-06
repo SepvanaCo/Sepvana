@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سپوانا | ریشه در پارس</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ivory: #F8F5F0;
             --cream: #F5F1EB;
             --forest: #1F3A2E;
-            --forest-deep: #1A3329;
+            --forest-deep: #152820;
             --gold: #C5A46B;
+            --gold-light: #D4B87A;
             --gold-muted: #B89B6A;
             --sage: #A8B5A0;
             --charcoal: #2C2C2C;
             --white: #FFFFFF;
-            --border: #E5DFD5;
+            --border: #E8E2D8;
+            --shadow-soft: 0 4px 24px rgba(31, 58, 46, 0.06);
+            --shadow-hover: 0 12px 40px rgba(31, 58, 46, 0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,12 +29,13 @@
             background-color: var(--ivory);
             color: var(--charcoal);
             line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ===== هدر ===== */
         header {
-            background-color: var(--white);
-            padding: 18px 5%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 14px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -39,52 +43,114 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 1px 0 rgba(197, 164, 107, 0.12);
         }
 
-        .logo img { height: 70px; width: auto; display: block; }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
 
-        nav { display: flex; align-items: center; }
+        .logo img {
+            height: 62px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--forest);
+            letter-spacing: 1.5px;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 0.62rem;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 3.5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-top: 1px;
+        }
+
+        nav { display: flex; align-items: center; gap: 2px; }
 
         nav a {
             text-decoration: none;
             color: var(--charcoal);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 400;
-            padding: 6px 16px;
-            letter-spacing: 0.3px;
-            transition: color 0.3s;
-            border-left: 1px solid var(--border);
+            padding: 8px 14px;
+            letter-spacing: 0.2px;
+            transition: all 0.3s ease;
+            position: relative;
             white-space: nowrap;
         }
 
-        nav a:last-child { border: none; }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            right: 14px;
+            left: 14px;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
         nav a:hover { color: var(--gold); }
+        nav a:hover::after { transform: scaleX(1); }
 
         nav a.export-link {
             color: var(--forest);
             font-weight: 600;
             font-family: 'Inter', sans-serif;
-            font-size: 0.82rem;
-            letter-spacing: 1px;
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            border: 1px solid var(--gold);
+            padding: 7px 16px;
+            margin-right: 8px;
+            border-radius: 2px;
         }
 
-        nav a.export-link:hover { color: var(--gold); }
+        nav a.export-link::after { display: none; }
+
+        nav a.export-link:hover {
+            background: var(--forest);
+            color: var(--gold-light);
+            border-color: var(--forest);
+        }
 
         nav a.export-link .arrow {
             display: inline-block;
-            margin-right: 4px;
-            font-size: 0.75rem;
+            margin-right: 5px;
+            font-size: 0.7rem;
+            transition: transform 0.3s;
         }
 
-        /* ===== Hero ===== */
+        nav a.export-link:hover .arrow {
+            transform: translate(-2px, -2px);
+        }
+
         .hero {
             position: relative;
-            height: 80vh;
-            min-height: 500px;
-            background-image: url('images/hero.jpg');
+            height: 85vh;
+            min-height: 560px;
+            background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1920&q=85');
             background-size: cover;
-            background-position: center;
+            background-position: center 40%;
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -94,42 +160,78 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(-90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%);
+            background: linear-gradient(
+                100deg,
+                rgba(21, 40, 32, 0.82) 0%,
+                rgba(21, 40, 32, 0.55) 45%,
+                rgba(21, 40, 32, 0.15) 100%
+            );
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             padding: 0 8%;
-            max-width: 650px;
+            max-width: 680px;
             color: var(--white);
+        }
+
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+            font-weight: 500;
         }
 
         .hero-content h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            line-height: 1;
+            font-size: 5.2rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+            line-height: 1.05;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
         }
 
         .hero-content .subtitle {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #E8D9B0;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            font-size: 1.35rem;
+            font-weight: 300;
+            color: #EDE4D0;
+            margin-bottom: 36px;
+            line-height: 1.6;
+            max-width: 420px;
         }
 
         .hero-content .divider {
-            width: 200px;
-            height: 1px;
-            background-color: var(--gold);
-            margin-top: 30px;
+            width: 80px;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin-bottom: 32px;
         }
 
-        /* ===== دسته‌بندی ===== */
+        .hero-cta {
+            display: inline-block;
+            padding: 13px 32px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.35s ease;
+            border-radius: 2px;
+        }
+
+        .hero-cta:hover {
+            background: var(--gold);
+            color: var(--forest-deep);
+        }
+
         .categories {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -138,212 +240,582 @@
         }
 
         .category {
-            padding: 40px 25px;
+            padding: 36px 22px 28px;
             text-align: center;
             border-left: 1px solid var(--border);
-            transition: background 0.3s;
+            transition: all 0.4s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
+            position: relative;
+            overflow: hidden;
         }
 
         .category:last-child { border: none; }
         .category:hover { background-color: #FAF8F3; }
 
         .category h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 500;
             color: var(--forest);
-            margin-bottom: 8px;
-            line-height: 1.3;
-            min-height: 60px;
+            margin-bottom: 10px;
+            line-height: 1.35;
+            min-height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: color 0.3s;
         }
 
+        .category:hover h3 { color: var(--gold); }
+
         .category .gold-line {
-            width: 40px;
-            height: 1px;
+            width: 36px;
+            height: 1.5px;
             background: var(--gold);
-            margin: 0 auto 25px;
+            margin: 0 auto 22px;
+            transition: width 0.4s ease;
+        }
+
+        .category:hover .gold-line { width: 56px; }
+
+        .category-img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+            box-shadow: var(--shadow-soft);
         }
 
         .category img {
             width: 100%;
-            height: 200px;
+            height: 210px;
             object-fit: cover;
-            border-radius: 4px;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* ===== نشان‌های اعتماد ===== */
-        .trust-badges {
-            background-color: var(--white);
+        .category:hover img { transform: scale(1.06); }
+
+        .category-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(31,58,46,0.25), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .category:hover .category-img-wrap::after { opacity: 1; }
+
+        .story {
+            padding: 90px 8%;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
             border-top: 1px solid var(--border);
-            padding: 50px 5%;
+        }
+
+        .story-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .story-content .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .story-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--forest);
+            margin-bottom: 22px;
+            line-height: 1.2;
+        }
+
+        .story-content p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+
+        .story-content .story-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--forest);
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
+            transition: color 0.3s;
+        }
+
+        .story-content .story-link:hover { color: var(--gold); }
+
+        .export {
+            padding: 90px 8%;
+            background: linear-gradient(160deg, var(--forest-deep) 0%, #1a3329 100%);
+            color: #E8E4DC;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .export::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .export-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .export-content .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .export-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.7rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .export-content p {
+            font-size: 1rem;
+            color: #C5CFC5;
+            line-height: 1.8;
+            margin-bottom: 28px;
+            max-width: 480px;
+        }
+
+        .export-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .export-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: #D0D8D0;
+        }
+
+        .export-feature span {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .export-cta {
+            display: inline-block;
+            padding: 14px 34px;
+            background: var(--gold);
+            color: var(--forest-deep);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: all 0.35s ease;
+        }
+
+        .export-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .export-visual {
+            text-align: center;
+        }
+
+        .export-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            border: 1px solid rgba(197, 164, 107, 0.25);
+        }
+
+        .trust-badges {
+            background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+            border-top: 1px solid var(--border);
+            padding: 60px 5%;
         }
 
         .trust-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            max-width: 1200px;
+            gap: 16px;
+            max-width: 1180px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .trust-item { padding: 15px 10px; }
+        .trust-item {
+            padding: 28px 16px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.35s ease;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .trust-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(197, 164, 107, 0.4);
+        }
 
         .trust-icon {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
+            font-size: 1.7rem;
+            margin-bottom: 14px;
             display: block;
-            color: var(--gold);
         }
 
         .trust-item h4 {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 600;
             color: var(--forest);
             margin-bottom: 6px;
         }
 
         .trust-item p {
-            font-size: 0.75rem;
-            color: #888;
+            font-size: 0.78rem;
+            color: #7A7A7A;
             line-height: 1.5;
         }
 
-        /* ===== فوتر ===== */
         footer {
             background-color: var(--forest-deep);
-            color: #CFD8CF;
+            color: #C5D0C5;
             text-align: center;
-            padding: 50px 5%;
+            padding: 56px 5% 40px;
+            position: relative;
         }
 
-        footer .logo-footer img {
-            height: 70px;
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .logo-footer img {
+            height: 90px;
             width: auto;
-            margin-bottom: 20px;
-            opacity: 0.95;
+            margin-bottom: 16px;
+            filter: brightness(1.1);
         }
 
         footer .tagline {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--gold);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
 
         footer p {
-            font-size: 0.85rem;
-            opacity: 0.7;
+            font-size: 0.8rem;
+            opacity: 0.65;
         }
 
-        /* ===== موبایل ===== */
-        @media (max-width: 900px) {
-            header { flex-direction: column; gap: 12px; padding: 15px 3%; }
-            nav { flex-wrap: wrap; justify-content: center; }
-            nav a { padding: 6px 10px; font-size: 0.78rem; border: none !important; }
-            .hero-content h1 { font-size: 3rem; letter-spacing: 1px; }
-            .hero-content .subtitle { font-size: 1.1rem; }
-            .categories { grid-template-columns: repeat(2, 1fr); }
-            .category { border: none !important; border-bottom: 1px solid var(--border) !important; }
-            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 960px) {
+            header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 14px 4%;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.78rem;
+            }
+
+            nav a.export-link {
+                margin-right: 0;
+                margin-top: 4px;
+            }
+
+            .hero-content h1 {
+                font-size: 3.4rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.15rem;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category {
+                border: none !important;
+                border-bottom: 1px solid var(--border) !important;
+            }
+
+            .category:nth-child(odd) {
+                border-left: 1px solid var(--border) !important;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 70px 6%;
+            }
+
+            .story-image img {
+                height: 360px;
+            }
+
+            .export-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
         }
 
-        @media (max-width: 500px) {
-            .categories { grid-template-columns: 1fr; }
-            .category img { height: 220px; }
-            .trust-grid { grid-template-columns: 1fr; }
+        @media (max-width: 520px) {
+            .hero {
+                height: 70vh;
+                min-height: 420px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .category:nth-child(odd) {
+                border-left: none !important;
+            }
+
+            .category img {
+                height: 230px;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .export-features {
+                grid-template-columns: 1fr;
+            }
+
+            .logo img {
+                height: 52px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="images/logo_green.png" alt="سپوانا">
-        </div>
-        <nav>
-            <a href="shop.html">حبوبات و غلات</a>
-            <a href="shop.html">ادویه و چاشنی</a>
-            <a href="shop.html">مربا و کنسرو</a>
-            <a href="shop.html">ترشی و تخمیری</a>
-            <a href="story.html">درباره ما</a>
-            <a href="contact.html">تماس</a>
-            <a href="export.html" class="export-link">Export <span class="arrow">↗</span></a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>سپوانا</h1>
-            <p class="subtitle">هفت روایت از سرزمین پارس</p>
-            <div class="divider"></div>
-        </div>
-    </section>
-
-    <section class="categories">
-        <a href="shop.html" class="category">
-            <h3>حبوبات و غلات</h3>
-            <div class="gold-line"></div>
-            <img src="images/cat-legumes.jpg" alt="حبوبات">
-        </a>
-        <a href="shop.html" class="category">
-            <h3>ادویه و چاشنی</h3>
-            <div class="gold-line"></div>
-            <img src="images/cat-spices.jpeg" alt="ادویه">
-        </a>
-        <a href="shop.html" class="category">
-            <h3>مربا و کنسرو</h3>
-            <div class="gold-line"></div>
-            <img src="images/cat-preserves.jpg" alt="مربا">
-        </a>
-        <a href="shop.html" class="category">
-            <h3>ترشی و تخمیری</h3>
-            <div class="gold-line"></div>
-            <img src="images/cat-pickles.jpg" alt="ترشی">
-        </a>
-    </section>
-
-    <section class="trust-badges">
-        <div class="trust-grid">
-            <div class="trust-item">
-                <span class="trust-icon">🚚</span>
-                <h4>ارسال به سراسر ایران</h4>
-                <p>به تمام نقاط کشور</p>
-            </div>
-            <div class="trust-item">
-                <span class="trust-icon">🛡</span>
-                <h4>ضمانت اصالت</h4>
-                <p>اصالت تضمین‌شده</p>
-            </div>
-            <div class="trust-item">
-                <span class="trust-icon">💬</span>
-                <h4>پشتیبانی ۷ روزه</h4>
-                <p>همیشه در دسترس</p>
-            </div>
-            <div class="trust-item">
-                <span class="trust-icon">🔒</span>
-                <h4>پرداخت امن</h4>
-                <p>اطلاعات شما محفوظ</p>
-            </div>
-            <div class="trust-item">
-                <span class="trust-icon">🌿</span>
-                <h4>۱۰۰٪ طبیعی</h4>
-                <p>بدون افزودنی</p>
+<header>
+    <a href="#" class="logo">
+        <img src="images/logo_green.png" alt="سپوانا | Sepvana">
+        <div class="logo-text-wrap">
+            <div class="logo-text">
+                سپوانا
+                <span>Sepvana Food</span>
             </div>
         </div>
-    </section>
+    </a>
+    <nav>
+        <a href="shop.html">حبوبات و غلات</a>
+        <a href="shop.html">ادویه و چاشنی</a>
+        <a href="shop.html">مربا و کنسرو</a>
+        <a href="shop.html">ترشی و تخمیری</a>
+        <a href="#story">درباره ما</a>
+        <a href="contact.html">تماس</a>
+        <a href="#export" class="export-link">Export <span class="arrow">↗</span></a>
+    </nav>
+</header>
 
-    <footer>
-        <div class="logo-footer">
-            <img src="images/logo-white.jpg" alt="سپوانا">
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-eyebrow">از دل سرزمین پارس</p>
+        <h1>سپوانا</h1>
+        <p class="subtitle">هفت روایت از سرزمین پارس</p>
+        <div class="divider"></div>
+        <a href="shop.html" class="hero-cta">مشاهده محصولات</a>
+    </div>
+</section>
+
+<section class="categories">
+    <a href="shop.html" class="category">
+        <h3>حبوبات و غلات</h3>
+        <div class="gold-line"></div>
+        <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=800&q=80" alt="حبوبات و غلات">
         </div>
-        <p class="tagline">سپوانا — ریشه در پارس</p>
-        <p>© ۱۴۰۵ سپوانا. تمامی حقوق محفوظ است.</p>
-    </footer>
+    </a>
+    <a href="shop.html" class="category">
+        <h3>ادویه و چاشنی</h3>
+        <div class="gold-line"></div>
+        <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="ادویه و چاشنی">
+        </div>
+    </a>
+    <a href="shop.html" class="category">
+        <h3>مربا و کنسرو</h3>
+        <div class="gold-line"></div>
+        <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=800&q=80" alt="مربا و کنسرو">
+        </div>
+    </a>
+    <a href="shop.html" class="category">
+        <h3>ترشی و تخمیری</h3>
+        <div class="gold-line"></div>
+        <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=80" alt="ترشی و تخمیری">
+        </div>
+    </a>
+</section>
+
+<section class="story" id="story">
+    <div class="story-image">
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=80" alt="ریشه در پارس">
+    </div>
+    <div class="story-content">
+        <p class="eyebrow">داستان ما</p>
+        <h2>ریشه در خاک پارس،<br>طعم در سفرهٔ جهان</h2>
+        <p>
+            سپوانا از دل مزارع و باغ‌های کهن ایران متولد شد. ما روایت‌گر طعم‌هایی هستیم که نسل‌به‌نسل از خاک این سرزمین برخاسته‌اند؛ از حبوبات دست‌چین‌شده تا ادویه‌های معطر و ترشی‌های اصیل.
+        </p>
+        <p>
+            هر محصول ما، بخشی از میراث غذایی ایران است که با استانداردهای جهانی و نگاه لوکس، آماده شده تا هم در سفرهٔ خانواده‌های ایرانی و هم در بازارهای صادراتی بدرخشد.
+        </p>
+        <a href="story.html" class="story-link">ادامه داستان ما ←</a>
+    </div>
+</section>
+
+<section class="export" id="export">
+    <div class="export-inner">
+        <div class="export-content">
+            <p class="eyebrow">Global Reach</p>
+            <h2>صادرات محصولات<br>سپوانا به سراسر جهان</h2>
+            <p>
+                سپوانا با تمرکز بر کیفیت صادراتی، محصولات خود را با بسته‌بندی پریمیوم و استانداردهای بین‌المللی به بازارهای جهانی عرضه می‌کند. از خاورمیانه تا اروپا و فراتر.
+            </p>
+            <div class="export-features">
+                <div class="export-feature">
+                    <span>✓</span>
+                    <span>بسته‌بندی صادراتی لوکس</span>
+                </div>
+                <div class="export-feature">
+                    <span>✓</span>
+                    <span>استانداردهای بین‌المللی</span>
+                </div>
+                <div class="export-feature">
+                    <span>✓</span>
+                    <span>ارسال به بیش از ۲۰ کشور</span>
+                </div>
+                <div class="export-feature">
+                    <span>✓</span>
+                    <span>پشتیبانی اختصاصی B2B</span>
+                </div>
+            </div>
+            <a href="export.html" class="export-cta">درخواست همکاری صادراتی</a>
+        </div>
+        <div class="export-visual">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80" alt="Export Sepvana">
+        </div>
+    </div>
+</section>
+
+<section class="trust-badges">
+    <div class="trust-grid">
+        <div class="trust-item">
+            <span class="trust-icon">🚚</span>
+            <h4>ارسال به سراسر ایران</h4>
+            <p>به تمام نقاط کشور</p>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">🛡</span>
+            <h4>ضمانت اصالت</h4>
+            <p>اصالت تضمین‌شده</p>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">💬</span>
+            <h4>پشتیبانی ۷ روزه</h4>
+            <p>همیشه در دسترس</p>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">🔒</span>
+            <h4>پرداخت امن</h4>
+            <p>اطلاعات شما محفوظ</p>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">🌿</span>
+            <h4>۱۰۰٪ طبیعی</h4>
+            <p>بدون افزودنی</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <img src="images/logo-white.jpg" alt="سپوانا" class="logo-footer">
+    <p class="tagline">سپوانا — ریشه در پارس</p>
+    <p>© ۱۴۰۵ سپوانا. تمامی حقوق محفوظ است.</p>
+</footer>
 
 </body>
 </html>
