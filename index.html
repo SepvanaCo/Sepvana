@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سپوانا | ریشه در ایران</title>
+    <title>سپوانا | ریشه در پارس</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -28,8 +28,6 @@
             line-height: 1.7;
         }
 
-        body.lang-en { font-family: 'Inter', 'Vazirmatn', sans-serif; }
-
         /* ===== هدر ===== */
         header {
             background-color: var(--white);
@@ -52,52 +50,32 @@
             color: var(--charcoal);
             font-size: 0.88rem;
             font-weight: 400;
-            padding: 6px 18px;
+            padding: 6px 16px;
             letter-spacing: 0.3px;
             transition: color 0.3s;
             border-left: 1px solid var(--border);
             white-space: nowrap;
         }
 
-        body.lang-en nav a { border-left: none; border-right: 1px solid var(--border); }
         nav a:last-child { border: none; }
         nav a:hover { color: var(--gold); }
 
-        /* ===== دکمه زبان ===== */
-        .lang-switch {
-            display: flex;
-            align-items: center;
-            gap: 0;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-right: 15px;
-        }
-
-        body.lang-en .lang-switch { margin-right: 0; margin-left: 15px; }
-
-        .lang-switch button {
-            background: none;
-            border: none;
-            padding: 8px 14px;
-            font-family: inherit;
+        nav a.export-link {
+            color: var(--forest);
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
             font-size: 0.82rem;
-            cursor: pointer;
-            color: var(--charcoal);
-            transition: background 0.3s, color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .lang-switch button:hover { background-color: #FAF8F3; color: var(--gold); }
+        nav a.export-link:hover { color: var(--gold); }
 
-        .lang-switch button.active {
-            background-color: var(--forest);
-            color: var(--white);
+        nav a.export-link .arrow {
+            display: inline-block;
+            margin-right: 4px;
+            font-size: 0.75rem;
         }
-
-        .lang-switch button.active:hover { background-color: var(--forest); color: var(--white); }
 
         /* ===== Hero ===== */
         .hero {
@@ -119,10 +97,6 @@
             background: linear-gradient(-90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%);
         }
 
-        body.lang-en .hero::before {
-            background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%);
-        }
-
         .hero-content {
             position: relative;
             z-index: 2;
@@ -133,28 +107,19 @@
 
         .hero-content h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
-            font-weight: 400;
+            font-size: 4.5rem;
+            font-weight: 500;
             letter-spacing: 2px;
             margin-bottom: 20px;
             line-height: 1;
         }
-
-        body.lang-en .hero-content h1 { letter-spacing: 8px; font-size: 5rem; }
 
         .hero-content .subtitle {
             font-size: 1.5rem;
             font-weight: 400;
             color: #E8D9B0;
             margin-bottom: 30px;
-            line-height: 1.4;
-        }
-
-        body.lang-en .hero-content .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-weight: 300;
-            font-size: 1.8rem;
+            line-height: 1.5;
         }
 
         .hero-content .divider {
@@ -182,7 +147,6 @@
             color: inherit;
         }
 
-        body.lang-en .category { border-left: none; border-right: 1px solid var(--border); }
         .category:last-child { border: none; }
         .category:hover { background-color: #FAF8F3; }
 
@@ -196,11 +160,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        body.lang-en .category h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
         }
 
         .category .gold-line {
@@ -249,11 +208,6 @@
             margin-bottom: 6px;
         }
 
-        body.lang-en .trust-item h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-        }
-
         .trust-item p {
             font-size: 0.75rem;
             color: #888;
@@ -281,12 +235,6 @@
             margin-bottom: 15px;
         }
 
-        body.lang-en footer .tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-        }
-
         footer p {
             font-size: 0.85rem;
             opacity: 0.7;
@@ -296,12 +244,9 @@
         @media (max-width: 900px) {
             header { flex-direction: column; gap: 12px; padding: 15px 3%; }
             nav { flex-wrap: wrap; justify-content: center; }
-            nav a { padding: 6px 12px; font-size: 0.8rem; border: none !important; }
-            .lang-switch { margin: 8px 0 0 0 !important; }
-            .hero-content h1 { font-size: 3rem; letter-spacing: 2px; }
-            body.lang-en .hero-content h1 { font-size: 3rem; letter-spacing: 5px; }
+            nav a { padding: 6px 10px; font-size: 0.78rem; border: none !important; }
+            .hero-content h1 { font-size: 3rem; letter-spacing: 1px; }
             .hero-content .subtitle { font-size: 1.1rem; }
-            body.lang-en .hero-content .subtitle { font-size: 1.2rem; }
             .categories { grid-template-columns: repeat(2, 1fr); }
             .category { border: none !important; border-bottom: 1px solid var(--border) !important; }
             .trust-grid { grid-template-columns: repeat(2, 1fr); }
@@ -314,52 +259,49 @@
         }
     </style>
 </head>
-<body class="lang-fa">
+<body>
 
     <header>
         <div class="logo">
-            <img src="images/logo_green.png" alt="Sepvana Food">
+            <img src="images/logo_green.png" alt="سپوانا">
         </div>
         <nav>
-            <a href="shop.html" data-en="Legumes & Grains" data-fa="حبوبات و غلات">حبوبات و غلات</a>
-            <a href="shop.html" data-en="Spices & Seasonings" data-fa="ادویه و چاشنی">ادویه و چاشنی</a>
-            <a href="shop.html" data-en="Preserves & Jams" data-fa="مربا و کنسرو">مربا و کنسرو</a>
-            <a href="shop.html" data-en="Pickles & Ferments" data-fa="ترشی و تخمیری">ترشی و تخمیری</a>
-            <a href="shop.html" data-en="Sesame & Sweets" data-fa="کنجد و شیرینی">کنجد و شیرینی</a>
-            <a href="shop.html" data-en="Collections" data-fa="مجموعه‌ها">مجموعه‌ها</a>
-            <div class="lang-switch">
-                <button id="btnFa" onclick="setLanguage('fa')" class="active">🇮🇷 فارسی</button>
-                <button id="btnEn" onclick="setLanguage('en')">🇬🇧 English</button>
-            </div>
+            <a href="shop.html">حبوبات و غلات</a>
+            <a href="shop.html">ادویه و چاشنی</a>
+            <a href="shop.html">مربا و کنسرو</a>
+            <a href="shop.html">ترشی و تخمیری</a>
+            <a href="story.html">درباره ما</a>
+            <a href="contact.html">تماس</a>
+            <a href="export.html" class="export-link">Export <span class="arrow">↗</span></a>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1 id="heroTitle">سپوانا</h1>
-            <p class="subtitle" id="heroSubtitle">هفت روایت از سرزمین ایران</p>
+            <h1>سپوانا</h1>
+            <p class="subtitle">هفت روایت از سرزمین پارس</p>
             <div class="divider"></div>
         </div>
     </section>
 
     <section class="categories">
         <a href="shop.html" class="category">
-            <h3 data-en="Legumes & Grains" data-fa="حبوبات و غلات">حبوبات و غلات</h3>
+            <h3>حبوبات و غلات</h3>
             <div class="gold-line"></div>
             <img src="images/cat-legumes.jpg" alt="حبوبات">
         </a>
         <a href="shop.html" class="category">
-            <h3 data-en="Spices & Seasonings" data-fa="ادویه و چاشنی">ادویه و چاشنی</h3>
+            <h3>ادویه و چاشنی</h3>
             <div class="gold-line"></div>
             <img src="images/cat-spices.jpeg" alt="ادویه">
         </a>
         <a href="shop.html" class="category">
-            <h3 data-en="Preserves & Jams" data-fa="مربا و کنسرو">مربا و کنسرو</h3>
+            <h3>مربا و کنسرو</h3>
             <div class="gold-line"></div>
             <img src="images/cat-preserves.jpg" alt="مربا">
         </a>
         <a href="shop.html" class="category">
-            <h3 data-en="Pickles & Ferments" data-fa="ترشی و تخمیری">ترشی و تخمیری</h3>
+            <h3>ترشی و تخمیری</h3>
             <div class="gold-line"></div>
             <img src="images/cat-pickles.jpg" alt="ترشی">
         </a>
@@ -369,90 +311,39 @@
         <div class="trust-grid">
             <div class="trust-item">
                 <span class="trust-icon">🚚</span>
-                <h4 data-en="Nationwide Delivery" data-fa="ارسال به سراسر ایران">ارسال به سراسر ایران</h4>
-                <p data-en="To every corner of Iran" data-fa="به تمام نقاط کشور">به تمام نقاط کشور</p>
+                <h4>ارسال به سراسر ایران</h4>
+                <p>به تمام نقاط کشور</p>
             </div>
             <div class="trust-item">
                 <span class="trust-icon">🛡</span>
-                <h4 data-en="Guaranteed Quality" data-fa="ضمانت اصالت">ضمانت اصالت</h4>
-                <p data-en="Authenticity assured" data-fa="اصالت تضمین‌شده">اصالت تضمین‌شده</p>
+                <h4>ضمانت اصالت</h4>
+                <p>اصالت تضمین‌شده</p>
             </div>
             <div class="trust-item">
                 <span class="trust-icon">💬</span>
-                <h4 data-en="7-Day Support" data-fa="پشتیبانی ۷ روزه">پشتیبانی ۷ روزه</h4>
-                <p data-en="Always here for you" data-fa="همیشه در دسترس">همیشه در دسترس</p>
+                <h4>پشتیبانی ۷ روزه</h4>
+                <p>همیشه در دسترس</p>
             </div>
             <div class="trust-item">
                 <span class="trust-icon">🔒</span>
-                <h4 data-en="Secure Payment" data-fa="پرداخت امن">پرداخت امن</h4>
-                <p data-en="Your data protected" data-fa="اطلاعات شما محفوظ">اطلاعات شما محفوظ</p>
+                <h4>پرداخت امن</h4>
+                <p>اطلاعات شما محفوظ</p>
             </div>
             <div class="trust-item">
                 <span class="trust-icon">🌿</span>
-                <h4 data-en="100% Natural" data-fa="۱۰۰٪ طبیعی">۱۰۰٪ طبیعی</h4>
-                <p data-en="No additives" data-fa="بدون افزودنی">بدون افزودنی</p>
+                <h4>۱۰۰٪ طبیعی</h4>
+                <p>بدون افزودنی</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="logo-footer">
-            <img src="images/logo-white.jpg" alt="Sepvana">
+            <img src="images/logo-white.jpg" alt="سپوانا">
         </div>
-        <p class="tagline" id="footerTagline">سپوانا — ریشه در ایران</p>
-        <p id="footerCopy">© ۱۴۰۵ سپوانا. تمامی حقوق محفوظ است.</p>
+        <p class="tagline">سپوانا — ریشه در پارس</p>
+        <p>© ۱۴۰۵ سپوانا. تمامی حقوق محفوظ است.</p>
     </footer>
-
-    <script>
-        // ===== تنظیم زبان =====
-        function setLanguage(lang) {
-            const body = document.body;
-            const html = document.documentElement;
-
-            if (lang === 'fa') {
-                body.classList.remove('lang-en');
-                body.classList.add('lang-fa');
-                html.setAttribute('lang', 'fa');
-                html.setAttribute('dir', 'rtl');
-                document.title = 'سپوانا | ریشه در ایران';
-
-                document.getElementById('heroTitle').textContent = 'سپوانا';
-                document.getElementById('heroSubtitle').innerHTML = 'هفت روایت از سرزمین ایران';
-                document.getElementById('footerTagline').textContent = 'سپوانا — ریشه در ایران';
-                document.getElementById('footerCopy').textContent = '© ۱۴۰۵ سپوانا. تمامی حقوق محفوظ است.';
-
-                document.getElementById('btnFa').classList.add('active');
-                document.getElementById('btnEn').classList.remove('active');
-            } else {
-                body.classList.remove('lang-fa');
-                body.classList.add('lang-en');
-                html.setAttribute('lang', 'en');
-                html.setAttribute('dir', 'ltr');
-                document.title = 'Sepvana Food | Rooted in Iran';
-
-                document.getElementById('heroTitle').textContent = 'SEPVANA';
-                document.getElementById('heroSubtitle').innerHTML = 'Seven Narratives from the Land of Iran';
-                document.getElementById('footerTagline').textContent = 'Sepvana — Rooted in Iran';
-                document.getElementById('footerCopy').textContent = '© 2026 Sepvana Food. All rights reserved.';
-
-                document.getElementById('btnEn').classList.add('active');
-                document.getElementById('btnFa').classList.remove('active');
-            }
-
-            document.querySelectorAll('[data-en][data-fa]').forEach(el => {
-                el.innerHTML = el.getAttribute('data-' + lang);
-            });
-
-            localStorage.setItem('sepvana-lang', lang);
-        }
-
-        // ===== بارگذاری اولیه =====
-        window.addEventListener('DOMContentLoaded', () => {
-            const saved = localStorage.getItem('sepvana-lang');
-            // اگر قبلاً انتخاب کرده، همان؛ وگرنه فارسی پیش‌فرض
-            setLanguage(saved === 'en' ? 'en' : 'fa');
-        });
-    </script>
 
 </body>
 </html>
