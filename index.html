@@ -35,47 +35,31 @@
     img { max-width: 100%; display: block; }
     .container { width: min(1180px, 90%); margin: 0 auto; }
 
-    /* ========== HEADER ========== */
+    /* Header */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: rgba(249, 246, 241, 0.9);
+      background: rgba(249, 246, 241, 0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(26, 51, 41, 0.05);
-      transition: all 0.4s ease;
+      transition: all 0.35s ease;
     }
-    header.scrolled {
-      padding: 0;
-      box-shadow: 0 6px 30px rgba(26, 51, 41, 0.06);
-    }
+    header.scrolled { box-shadow: 0 6px 30px rgba(26, 51, 41, 0.06); }
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 0;
-      transition: padding 0.35s ease;
+      padding: 16px 0;
     }
-    header.scrolled .header-inner { padding: 12px 0; }
-
-    .logo { display: flex; flex-direction: column; }
-    .logo-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      color: var(--forest);
+    .logo img {
+      height: 42px;
+      width: auto;
     }
-    .logo-tag {
-      font-size: 0.7rem;
-      color: var(--sage);
-      letter-spacing: 1.5px;
-      margin-top: 3px;
-    }
-
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 26px;
+      gap: 24px;
     }
     .lang-switch {
       font-size: 0.84rem;
@@ -86,18 +70,17 @@
     .lang-switch span { cursor: pointer; transition: color 0.2s; }
     .lang-switch span:hover,
     .lang-switch .active { color: var(--forest); }
-
-    .cart-btn {
-      position: relative;
-      font-size: 1.3rem;
-      cursor: pointer;
+    .cart-btn, .menu-btn {
       background: none;
       border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
       color: var(--forest);
+      position: relative;
     }
     .cart-count {
       position: absolute;
-      top: -9px; left: -11px;
+      top: -8px; left: -10px;
       background: var(--terracotta);
       color: white;
       font-size: 0.65rem;
@@ -108,17 +91,18 @@
       justify-content: center;
       font-weight: 600;
     }
-    .menu-btn {
-      font-size: 1.45rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--forest);
-      display: flex;
-      align-items: center;
-    }
 
-    /* ========== MOBILE MENU ========== */
+    /* Mobile Menu */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,51,41,0.28);
+      z-index: 1500;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.35s;
+    }
+    .menu-overlay.show { opacity: 1; visibility: visible; }
     .mobile-menu {
       position: fixed;
       top: 0; right: -100%;
@@ -126,47 +110,29 @@
       height: 100vh;
       background: var(--ivory);
       z-index: 2000;
-      padding: 40px 32px;
+      padding: 36px 30px;
       transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: -20px 0 60px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
+      box-shadow: -20px 0 50px rgba(0,0,0,0.08);
     }
     .mobile-menu.open { right: 0; }
     .menu-close {
-      align-self: flex-start;
-      font-size: 1.6rem;
       background: none;
       border: none;
+      font-size: 1.5rem;
       color: var(--forest);
       cursor: pointer;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
     .mobile-menu nav a {
       display: block;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--forest);
-      padding: 14px 0;
+      padding: 13px 0;
       border-bottom: 1px solid rgba(26,51,41,0.06);
       font-weight: 500;
-      transition: color 0.2s;
-    }
-    .mobile-menu nav a:hover { color: var(--terracotta); }
-    .menu-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(26,51,41,0.25);
-      z-index: 1500;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.35s;
-    }
-    .menu-overlay.show {
-      opacity: 1;
-      visibility: visible;
     }
 
-    /* ========== CART SIDEBAR ========== */
+    /* Cart Sidebar */
     .cart-sidebar {
       position: fixed;
       top: 0; left: -100%;
@@ -174,9 +140,9 @@
       height: 100vh;
       background: var(--ivory);
       z-index: 2000;
-      padding: 36px 28px;
+      padding: 32px 26px;
       transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 20px 0 60px rgba(0,0,0,0.08);
+      box-shadow: 20px 0 50px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
     }
@@ -185,92 +151,79 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
-    .cart-header h3 {
-      font-size: 1.25rem;
-      color: var(--forest);
-    }
+    .cart-header h3 { font-size: 1.2rem; color: var(--forest); }
     .cart-close {
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       cursor: pointer;
       color: var(--forest);
     }
-    .cart-items {
-      flex: 1;
-      overflow-y: auto;
-    }
+    .cart-items { flex: 1; overflow-y: auto; }
     .cart-item {
       display: flex;
-      gap: 16px;
-      padding: 16px 0;
+      gap: 14px;
+      padding: 14px 0;
       border-bottom: 1px solid rgba(26,51,41,0.06);
     }
     .cart-item-img {
-      width: 64px; height: 64px;
-      background: var(--ivory-dark);
+      width: 60px; height: 60px;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
+      object-fit: cover;
       flex-shrink: 0;
     }
-    .cart-item-info { flex: 1; }
     .cart-item-name {
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--forest);
-      margin-bottom: 4px;
     }
-    .cart-item-meta {
-      font-size: 0.82rem;
-      color: var(--text-light);
-    }
+    .cart-item-meta { font-size: 0.82rem; color: var(--text-light); }
     .cart-item-remove {
       background: none;
       border: none;
       color: var(--terracotta);
       font-size: 0.8rem;
       cursor: pointer;
-      margin-top: 6px;
+      margin-top: 4px;
     }
     .cart-empty {
       text-align: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
       color: var(--text-light);
-      font-size: 0.95rem;
     }
     .cart-footer {
-      padding-top: 20px;
+      padding-top: 18px;
       border-top: 1px solid rgba(26,51,41,0.08);
     }
     .cart-footer p {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-light);
-      margin-bottom: 16px;
       text-align: center;
+      margin-bottom: 14px;
     }
 
-    /* ========== HERO ========== */
+    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      background: linear-gradient(160deg, #f9f6f1 0%, #ebe4d8 100%);
-      padding-top: 90px;
+      padding-top: 80px;
       overflow: hidden;
     }
     .hero-bg {
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 25% 75%, rgba(194, 164, 110, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 75% 25%, rgba(139, 154, 124, 0.09) 0%, transparent 50%);
+      background: url('images/hero.jpg') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(26,51,41,0.35), rgba(26,51,41,0.55));
     }
     .hero-content {
       position: relative;
@@ -278,33 +231,33 @@
       max-width: 700px;
       padding: 0 20px;
       z-index: 2;
+      color: var(--ivory);
     }
     .hero-kicker {
-      font-size: 0.88rem;
-      color: var(--sage);
+      font-size: 0.9rem;
       letter-spacing: 5px;
       margin-bottom: 20px;
       font-weight: 500;
+      opacity: 0.9;
     }
     .hero h1 {
-      font-size: clamp(2.5rem, 5.8vw, 3.9rem);
+      font-size: clamp(2.5rem, 5.8vw, 3.8rem);
       font-weight: 700;
-      color: var(--forest);
-      line-height: 1.22;
+      line-height: 1.25;
       margin-bottom: 14px;
     }
     .hero-sub {
       font-size: 1.2rem;
-      color: var(--terracotta);
-      margin-bottom: 24px;
+      color: var(--gold);
+      margin-bottom: 22px;
       font-weight: 500;
     }
     .hero-desc {
       font-size: 1.08rem;
-      color: var(--text-light);
       max-width: 460px;
       margin: 0 auto 42px;
       line-height: 1.85;
+      opacity: 0.9;
     }
     .hero-buttons {
       display: flex;
@@ -323,27 +276,28 @@
       transition: all 0.3s ease;
       cursor: pointer;
       border: none;
+      font-family: inherit;
     }
     .btn-primary {
-      background: var(--forest);
-      color: var(--ivory);
+      background: var(--ivory);
+      color: var(--forest);
     }
     .btn-primary:hover {
-      background: var(--forest-light);
+      background: var(--white);
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(26, 51, 41, 0.18);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
     }
     .btn-outline {
       background: transparent;
-      border: 1.5px solid var(--forest);
-      color: var(--forest);
-    }
-    .btn-outline:hover {
-      background: var(--forest);
+      border: 1.5px solid rgba(249,246,241,0.7);
       color: var(--ivory);
     }
+    .btn-outline:hover {
+      background: rgba(249,246,241,0.15);
+      border-color: var(--ivory);
+    }
 
-    /* ========== SECTIONS ========== */
+    /* Sections */
     section { padding: 110px 0; }
     .section-title { text-align: center; margin-bottom: 64px; }
     .section-title h2 {
@@ -359,7 +313,7 @@
       margin: 0 auto;
     }
 
-    /* ========== THREE PATHS ========== */
+    /* Paths */
     .paths { background: var(--white); }
     .paths-grid {
       display: grid;
@@ -403,7 +357,7 @@
     }
     .path-link:hover { gap: 11px; }
 
-    /* ========== IRAN MAP ========== */
+    /* Iran */
     .iran-land { background: var(--ivory-dark); }
     .iran-content {
       display: grid;
@@ -450,10 +404,7 @@
       padding: 30px;
       box-shadow: var(--shadow);
     }
-    .iran-map-wrap svg {
-      width: 100%;
-      height: auto;
-    }
+    .iran-map-wrap svg { width: 100%; height: auto; }
     .map-region {
       fill: #d4c9b8;
       stroke: #f9f6f1;
@@ -462,9 +413,7 @@
       transition: fill 0.3s;
     }
     .map-region:hover,
-    .map-region.active {
-      fill: var(--forest);
-    }
+    .map-region.active { fill: var(--forest); }
     .region-info {
       margin-top: 20px;
       text-align: center;
@@ -473,7 +422,7 @@
       min-height: 48px;
     }
 
-    /* ========== SELECTED ========== */
+    /* Selected Products */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -492,11 +441,16 @@
     }
     .product-img {
       height: 230px;
-      background: linear-gradient(150deg, #e9e2d6, #d6cbb8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.4rem;
+      overflow: hidden;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img img {
+      transform: scale(1.05);
     }
     .product-info { padding: 24px 22px 28px; }
     .product-name {
@@ -530,8 +484,12 @@
       font-family: inherit;
     }
     .add-btn:hover { background: var(--forest-light); }
+    .products-cta {
+      text-align: center;
+      margin-top: 50px;
+    }
 
-    /* ========== HERITAGE ========== */
+    /* Heritage */
     .heritage { background: var(--white); }
     .heritage-grid {
       display: grid;
@@ -541,13 +499,13 @@
     }
     .heritage-img {
       height: 440px;
-      background: linear-gradient(160deg, #2a4a3c, #1a3329);
       border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(249, 246, 241, 0.4);
-      font-size: 1.15rem;
+      overflow: hidden;
+    }
+    .heritage-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .heritage-text h2 {
       font-size: 2.1rem;
@@ -567,7 +525,7 @@
       margin: 26px 0 34px;
     }
 
-    /* ========== GIFTS ========== */
+    /* Gifts */
     .gifts { background: var(--ivory-dark); }
     .gifts-grid {
       display: grid;
@@ -602,7 +560,7 @@
       line-height: 1.6;
     }
 
-    /* ========== WHY ========== */
+    /* Why */
     .why-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -622,7 +580,7 @@
       line-height: 1.65;
     }
 
-    /* ========== LIGHT SOCIAL PROOF ========== */
+    /* Social Proof */
     .social-proof {
       background: var(--white);
       text-align: center;
@@ -641,7 +599,7 @@
       color: var(--sage);
     }
 
-    /* ========== RECIPES ========== */
+    /* Recipes */
     .recipes-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -674,7 +632,7 @@
       line-height: 1.5;
     }
 
-    /* ========== EXPORT ========== */
+    /* Export */
     .export {
       background: var(--forest);
       color: var(--ivory);
@@ -714,7 +672,7 @@
       transform: translateY(-2px);
     }
 
-    /* ========== MAGAZINE ========== */
+    /* Magazine */
     .magazine-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -742,7 +700,7 @@
       color: var(--text-light);
     }
 
-    /* ========== INSTAGRAM ========== */
+    /* Instagram */
     .instagram { background: var(--ivory-dark); }
     .insta-grid {
       display: grid;
@@ -763,7 +721,7 @@
     .insta-item:hover { transform: scale(1.03); }
     .insta-btn-wrap { text-align: center; }
 
-    /* ========== FINAL CTA ========== */
+    /* Final CTA */
     .final-cta {
       background: var(--ivory);
       text-align: center;
@@ -776,7 +734,7 @@
       font-weight: 600;
     }
 
-    /* ========== FOOTER ========== */
+    /* Footer */
     footer {
       background: var(--forest);
       color: var(--ivory);
@@ -811,22 +769,13 @@
       flex-wrap: wrap;
       gap: 16px;
     }
-    .footer-logo {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-    .footer-logo span {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 400;
-      opacity: 0.55;
-      letter-spacing: 1px;
-      margin-top: 4px;
+    .footer-logo img {
+      height: 36px;
+      width: auto;
     }
     .copyright { font-size: 0.85rem; opacity: 0.5; }
 
-    /* ========== RESPONSIVE ========== */
+    /* Responsive */
     @media (max-width: 1024px) {
       .paths-grid, .products-grid, .why-grid, .recipes-grid, .magazine-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -851,12 +800,11 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header id="header">
     <div class="container header-inner">
-      <a href="#" class="logo">
-        <div class="logo-name">SEPVANA</div>
-        <div class="logo-tag">ریشه در پارس</div>
+      <a href="index.html" class="logo">
+        <img src="images/logo_green.png" alt="SEPVANA">
       </a>
       <div class="header-actions">
         <div class="lang-switch">
@@ -873,13 +821,13 @@
     </div>
   </header>
 
-  <!-- MOBILE MENU -->
+  <!-- Mobile Menu -->
   <div class="menu-overlay" id="menuOverlay"></div>
   <div class="mobile-menu" id="mobileMenu">
     <button class="menu-close" id="menuClose">✕</button>
     <nav>
-      <a href="#">خانه</a>
-      <a href="#products">فروشگاه</a>
+      <a href="index.html">خانه</a>
+      <a href="shop.html">فروشگاه</a>
       <a href="#heritage">داستان سپوانا</a>
       <a href="#gifts">پک‌های هدیه</a>
       <a href="#export">همکاری و صادرات</a>
@@ -888,7 +836,7 @@
     </nav>
   </div>
 
-  <!-- CART SIDEBAR -->
+  <!-- Cart Sidebar -->
   <div class="menu-overlay" id="cartOverlay"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
@@ -904,7 +852,7 @@
     </div>
   </div>
 
-  <!-- HERO -->
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -913,13 +861,13 @@
       <div class="hero-sub">ریشه در پارس</div>
       <p class="hero-desc">طعم‌هایی با ریشه در فرهنگ ایران، برای زندگی امروز.</p>
       <div class="hero-buttons">
-        <a href="#products" class="btn btn-primary">کشف طعم‌های ایران ←</a>
+        <a href="shop.html" class="btn btn-primary">کشف طعم‌های ایران ←</a>
         <a href="#heritage" class="btn btn-outline">داستان سپوانا</a>
       </div>
     </div>
   </section>
 
-  <!-- THREE PATHS -->
+  <!-- Three Paths -->
   <section class="paths">
     <div class="container">
       <div class="paths-grid">
@@ -927,7 +875,7 @@
           <div class="path-icon">🍽️</div>
           <h3>مصرف شخصی و خانواده</h3>
           <p>محصولات روزمره، صبحانه، ترشی، مربا، حبوبات، ادویه و هر آنچه برای سفرهٔ خانه نیاز دارید.</p>
-          <a href="#products" class="path-link">مشاهده محصولات →</a>
+          <a href="shop.html" class="path-link">مشاهده محصولات →</a>
         </div>
         <div class="path-card">
           <div class="path-icon">🏢</div>
@@ -945,7 +893,7 @@
     </div>
   </section>
 
-  <!-- IRAN MAP -->
+  <!-- Iran Map -->
   <section class="iran-land">
     <div class="container">
       <div class="iran-content">
@@ -961,17 +909,11 @@
           </div>
         </div>
         <div class="iran-map-wrap">
-          <!-- Simplified interactive Iran regions -->
           <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
-            <!-- North -->
             <path class="map-region active" data-region="north" d="M80,40 L180,30 L260,50 L240,90 L160,100 L90,80 Z" />
-            <!-- Center -->
             <path class="map-region" data-region="center" d="M100,100 L200,90 L280,110 L270,180 L180,190 L110,160 Z" />
-            <!-- West -->
             <path class="map-region" data-region="west" d="M40,80 L100,100 L110,160 L70,200 L30,150 Z" />
-            <!-- South -->
             <path class="map-region" data-region="south" d="M110,160 L180,190 L270,180 L300,240 L200,280 L120,250 Z" />
-            <!-- East -->
             <path class="map-region" data-region="east" d="M270,110 L340,90 L370,150 L300,240 L270,180 Z" />
           </svg>
           <div class="region-info" id="regionInfo">شمال ایران — طعم‌های جنگلی، برنج، چای و مرکبات</div>
@@ -980,16 +922,18 @@
     </div>
   </section>
 
-  <!-- SELECTED PRODUCTS -->
-  <section class="products" id="products">
+  <!-- Selected Products (Teaser) -->
+  <section class="products">
     <div class="container">
       <div class="section-title">
         <h2>منتخب سپوانا</h2>
         <p>چیزهایی که ارزش جای گرفتن روی سفره شما را دارند.</p>
       </div>
       <div class="products-grid">
-        <div class="product-card" data-id="1" data-name="مربای سیب" data-weight="۴۵۰ گرم">
-          <div class="product-img">🍎</div>
+        <div class="product-card" data-id="1" data-name="مربای سیب" data-weight="۴۵۰ گرم" data-img="images/jam-apple.jpg">
+          <div class="product-img">
+            <img src="images/jam-apple.jpg" alt="مربای سیب">
+          </div>
           <div class="product-info">
             <div class="product-name">مربای سیب</div>
             <div class="product-weight">۴۵۰ گرم</div>
@@ -997,8 +941,10 @@
             <button class="add-btn">افزودن به سبد</button>
           </div>
         </div>
-        <div class="product-card" data-id="2" data-name="خیارشور" data-weight="۶۵۰ گرم">
-          <div class="product-img">🥒</div>
+        <div class="product-card" data-id="2" data-name="خیارشور" data-weight="۶۵۰ گرم" data-img="images/pickle-cucumber.jpg">
+          <div class="product-img">
+            <img src="images/pickle-cucumber.jpg" alt="خیارشور">
+          </div>
           <div class="product-info">
             <div class="product-name">خیارشور</div>
             <div class="product-weight">۶۵۰ گرم</div>
@@ -1006,8 +952,10 @@
             <button class="add-btn">افزودن به سبد</button>
           </div>
         </div>
-        <div class="product-card" data-id="3" data-name="ادویه مخلوط" data-weight="۱۰۰ گرم">
-          <div class="product-img">🌶️</div>
+        <div class="product-card" data-id="3" data-name="ادویه مخلوط" data-weight="۱۰۰ گرم" data-img="images/cat-spices.jpeg">
+          <div class="product-img">
+            <img src="images/cat-spices.jpeg" alt="ادویه">
+          </div>
           <div class="product-info">
             <div class="product-name">ادویه مخلوط</div>
             <div class="product-weight">۱۰۰ گرم</div>
@@ -1015,8 +963,10 @@
             <button class="add-btn">افزودن به سبد</button>
           </div>
         </div>
-        <div class="product-card" data-id="4" data-name="حبوبات ممتاز" data-weight="۹۰۰ گرم">
-          <div class="product-img">🫘</div>
+        <div class="product-card" data-id="4" data-name="حبوبات ممتاز" data-weight="۹۰۰ گرم" data-img="images/cat-legumes.jpg">
+          <div class="product-img">
+            <img src="images/cat-legumes.jpg" alt="حبوبات">
+          </div>
           <div class="product-info">
             <div class="product-name">حبوبات ممتاز</div>
             <div class="product-weight">۹۰۰ گرم</div>
@@ -1025,25 +975,30 @@
           </div>
         </div>
       </div>
+      <div class="products-cta">
+        <a href="shop.html" class="btn btn-primary">مشاهده همه محصولات →</a>
+      </div>
     </div>
   </section>
 
-  <!-- HERITAGE -->
+  <!-- Heritage -->
   <section class="heritage" id="heritage">
     <div class="container">
       <div class="heritage-grid">
-        <div class="heritage-img">تصویر میراثی</div>
+        <div class="heritage-img">
+          <img src="images/story.jpg" alt="داستان سپوانا">
+        </div>
         <div class="heritage-text">
           <h2>از دیرباز تا به امروز</h2>
           <p>بسیاری از طعم‌هایی که امروز روی سفره‌های ما هستند، داستانی طولانی‌تر از یک دستور غذا دارند.</p>
           <div class="highlight">میراثی که زندگی می‌کند.</div>
-          <a href="#" class="btn btn-primary">داستان سپوانا را بخوانید →</a>
+          <a href="#" class="btn btn-primary" style="background:var(--forest);color:var(--ivory)">داستان سپوانا را بخوانید →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GIFTS -->
+  <!-- Gifts -->
   <section class="gifts" id="gifts">
     <div class="container">
       <div class="section-title">
@@ -1080,7 +1035,7 @@
     </div>
   </section>
 
-  <!-- WHY -->
+  <!-- Why -->
   <section class="why">
     <div class="container">
       <div class="section-title">
@@ -1111,7 +1066,7 @@
     </div>
   </section>
 
-  <!-- LIGHT SOCIAL PROOF -->
+  <!-- Social Proof -->
   <section class="social-proof">
     <div class="container">
       <p>«حس می‌کنی داری از یک برند خاص خرید می‌کنی؛ هم طعمش متفاوته هم داستان پشتش.»</p>
@@ -1119,7 +1074,7 @@
     </div>
   </section>
 
-  <!-- RECIPES -->
+  <!-- Recipes -->
   <section class="recipes">
     <div class="container">
       <div class="section-title">
@@ -1146,7 +1101,7 @@
     </div>
   </section>
 
-  <!-- EXPORT -->
+  <!-- Export -->
   <section class="export" id="export">
     <div class="container">
       <h2>طعم ایران،</h2>
@@ -1161,7 +1116,7 @@
     </div>
   </section>
 
-  <!-- MAGAZINE -->
+  <!-- Magazine -->
   <section class="magazine" id="magazine">
     <div class="container">
       <div class="section-title">
@@ -1184,7 +1139,7 @@
     </div>
   </section>
 
-  <!-- INSTAGRAM -->
+  <!-- Instagram -->
   <section class="instagram">
     <div class="container">
       <div class="section-title">
@@ -1198,20 +1153,20 @@
         <div class="insta-item">🏺</div>
       </div>
       <div class="insta-btn-wrap">
-        <a href="#" class="btn btn-outline">@SepvanaFood</a>
+        <a href="#" class="btn btn-outline" style="border-color:var(--forest);color:var(--forest)">@SepvanaFood</a>
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
+  <!-- Final CTA -->
   <section class="final-cta" id="contact">
     <div class="container">
       <h2>سفر طعم‌های ایران از اینجا شروع می‌شود.</h2>
-      <a href="#products" class="btn btn-primary">کشف فروشگاه →</a>
+      <a href="shop.html" class="btn btn-primary" style="background:var(--forest);color:var(--ivory)">کشف فروشگاه →</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -1223,9 +1178,9 @@
         </div>
         <div class="footer-col">
           <h4>خرید</h4>
-          <a href="#products">همه محصولات</a>
+          <a href="shop.html">همه محصولات</a>
           <a href="#gifts">پک‌های هدیه</a>
-          <a href="#">خانواده</a>
+          <a href="shop.html">خانواده</a>
         </div>
         <div class="footer-col">
           <h4>همکاری</h4>
@@ -1243,8 +1198,7 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-logo">
-          SEPVANA
-          <span>ریشه در پارس</span>
+          <img src="images/logo-white.jpg" alt="SEPVANA">
         </div>
         <div class="copyright">© SEPVANA</div>
       </div>
@@ -1317,8 +1271,8 @@
       }
       cartItemsEl.innerHTML = cart.map((item, i) => `
         <div class="cart-item">
-          <div class="cart-item-img">${item.emoji || '🛍️'}</div>
-          <div class="cart-item-info">
+          <img class="cart-item-img" src="${item.img || ''}" alt="${item.name}" onerror="this.style.display='none'">
+          <div>
             <div class="cart-item-name">${item.name}</div>
             <div class="cart-item-meta">${item.weight || ''}</div>
             <button class="cart-item-remove" data-index="${i}">حذف</button>
@@ -1342,18 +1296,17 @@
           id: card.dataset.id,
           name: card.dataset.name,
           weight: card.dataset.weight,
-          emoji: card.querySelector('.product-img').textContent.trim()
+          img: card.dataset.img
         };
         cart.push(item);
         saveCart();
-        // small feedback
         btn.textContent = 'اضافه شد ✓';
         setTimeout(() => btn.textContent = 'افزودن به سبد', 1200);
       });
     });
     updateCartCount();
 
-    // Iran Map regions
+    // Iran Map
     const regionData = {
       north: 'شمال ایران — طعم‌های جنگلی، برنج، چای و مرکبات',
       center: 'مرکز ایران — زعفران، انار، شیرینی‌های سنتی و طعم‌های کویری',
